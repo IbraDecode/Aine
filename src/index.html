@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aine API Docs — browse and test endpoints in real-time." />
+  <meta name="theme-color" content="#F7FDFF" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+  <title>Aine Api’S — Docs</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #F7FDFF;
+      --surface: rgba(255,255,255,.72);
+      --stroke: rgba(255,255,255,.55);
+      --text: #0F172A;
+      --muted:#64748B;
+      --primary:#69AAE6;
+      --secondary:#BEE7E9;
+      --highlight:#94CAE1;
+      --deep:#1664B9;
+
+      --shadow: 0 18px 60px rgba(15,23,42,.08);
+      --shadow2: 0 12px 28px rgba(15,23,42,.07);
+      --radius: 24px;
+    }
+
+    html, body {
+      height:100%;
+    }
+
+    body{
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(148,202,225,.45), transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(106,170,230,.25), transparent 55%),
+        linear-gradient(180deg, var(--bg), #FFFFFF);
+    }
+
+    /* subtle dot pattern */
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image: radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+
+    * { transition: background-color .2s ease, border-color .2s ease, transform .2s ease, opacity .2s ease; }
+
+    .glass{
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border-radius: var(--radius);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-img{
+      width:100%;
+      height: 260px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(247,253,255,.78) 70%, rgba(247,253,255,1) 100%);
+    }
+
+    .title{
+      font-family: Fredoka, Inter, sans-serif;
+      letter-spacing: .6px;
+    }
+
+    .mono{
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.75);
+      box-shadow: var(--shadow2);
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--primary), var(--deep));
+      color:white;
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: 0 16px 40px rgba(105,170,230,.28);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.65);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--deep);
+    }
+
+    .input{
+      width:100%;
+      padding: 14px 16px 14px 46px;
+      border-radius: 18px;
+      border: 1px solid rgba(148,202,225,.55);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow2);
+      outline:none;
+      font-size: 14px;
+    }
+    .input:focus{
+      border-color: rgba(105,170,230,.9);
+      box-shadow: 0 0 0 5px rgba(105,170,230,.18);
+    }
+
+    .method{
+      font-size: 11px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.6);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .m-get{ background: rgba(16,185,129,.16); color:#059669; }
+    .m-post{ background: rgba(105,170,230,.16); color:#1664B9; }
+    .m-put{ background: rgba(245,158,11,.16); color:#d97706; }
+    .m-del{ background: rgba(239,68,68,.16); color:#dc2626; }
+    .m-other{ background: rgba(100,116,139,.16); color:#334155; }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius: 22px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    .card-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      opacity:.08;
+      pointer-events:none;
+    }
+    .card-shade{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.12));
+      pointer-events:none;
+    }
+
+    .toast{
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 9999;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow2);
+      font-size: 13px;
+      font-weight: 600;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      max-width: 320px;
+    }
+
+    .modal-backdrop{
+      position: fixed;
+      inset:0;
+      z-index: 9998;
+      background: rgba(15,23,42,.35);
+      backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
+    }
+
+    .modal{
+      width: min(960px, 100%);
+      max-height: 92vh;
+      overflow:hidden;
+      border-radius: 26px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.65);
+      backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction: column;
+    }
+
+    .modal-body{
+      overflow:auto;
+      max-height: calc(92vh - 72px);
+    }
+
+    pre{
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    ::-webkit-scrollbar{ width: 7px; height: 7px; }
+    ::-webkit-scrollbar-thumb{ background: rgba(15,23,42,.18); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover{ background: rgba(15,23,42,.28); }
+
+    /* loading screen */
+    #loadingScreen { display:flex; }
+  </style>
+</head>
+
+<body class="min-h-screen">
+  <!-- LOADING SCREEN (image state) -->
+  <div id="loadingScreen" class="fixed inset-0 z-50 items-center justify-center p-4 bg-[#F7FDFF]">
+    <div class="glass overflow-hidden border border-white/60 shadow-lg max-w-md w-full">
+      <img src="/images/loading-search.webp" class="w-full h-auto block" alt="Loading" />
+    </div>
+  </div>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <!-- HERO -->
+    <section class="hero mb-6">
+      <img src="/images/banner.webp" class="hero-img" alt="Banner">
+      <div class="hero-overlay"></div>
+
+      <div class="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end gap-4">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <img src="/images/logo.svg" class="w-11 h-11" alt="Logo">
+            <div>
+              <h1 id="titleApi" class="title text-3xl sm:text-5xl font-extrabold leading-tight">
+                Aine Api’S
+              </h1>
+              <p class="text-sm sm:text-[15px] text-slate-700 font-medium mt-1 opacity-90">
+                Developer-first REST API docs with real-time testing.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="versionPill" class="pill">
+              <img src="/images/icons/check.svg" class="w-4 h-4 opacity-80" alt="">
+              v1.0.0
+            </span>
+
+            <button id="copyBaseBtn" class="btn">
+              <img src="/images/icons/copy.svg" class="w-5 h-5 opacity-80" alt="">
+              Copy Base URL
+            </button>
+
+            <a id="docsBtn" href="#endpoints" class="btn btn-primary">
+              <img src="/images/icons/docs.svg" class="w-5 h-5 opacity-95" alt="">
+              Browse Endpoints
+            </a>
+          </div>
+        </div>
+
+        <p id="descApi" class="text-slate-700 text-sm sm:text-[15px] leading-relaxed max-w-3xl">
+          Explore and test our endpoints instantly. Search by keyword, filter methods, open details, and run requests inside the docs.
+        </p>
+
+        <!-- QUICK STATS -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="glass p-4 border border-white/60">
+            <div class="text-xs font-bold text-slate-500">Total Endpoints</div>
+            <div id="statTotal" class="text-2xl font-extrabold mt-1">—</div>
+          </div>
+          <div class="glass p-4 border border-white/60">
+            <div class="text-xs font-bold text-slate-500">Categories</div>
+            <div id="statCategories" class="text-2xl font-extrabold mt-1">—</div>
+          </div>
+          <div class="glass p-4 border border-white/60">
+            <div class="text-xs font-bold text-slate-500">Theme</div>
+            <div id="statTheme" class="text-2xl font-extrabold mt-1">Light</div>
+          </div>
+          <div class="glass p-4 border border-white/60">
+            <div class="text-xs font-bold text-slate-500">Status</div>
+            <div id="statStatus" class="text-2xl font-extrabold mt-1 text-emerald-600">Ready</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH + FILTER -->
+    <section id="endpoints" class="mb-5">
+      <div class="glass p-4 sm:p-5 border border-white/60">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:items-center">
+          <div class="relative sm:col-span-2">
+            <img src="/images/icons/search.svg" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-70" alt="search">
+            <input id="searchInput" class="input" placeholder="Search endpoints… ex: anime / tools / downloader / /api/..." />
+          </div>
+
+          <div class="flex gap-2 flex-wrap justify-start sm:justify-end">
+            <button data-method="all" class="methodFilter pill !text-slate-700 !bg-white/70">All</button>
+            <button data-method="get" class="methodFilter pill !text-emerald-700 !bg-emerald-50/70">GET</button>
+            <button data-method="post" class="methodFilter pill !text-blue-700 !bg-sky-50/70">POST</button>
+            <button data-method="put" class="methodFilter pill !text-amber-700 !bg-amber-50/70">PUT</button>
+            <button data-method="delete" class="methodFilter pill !text-red-700 !bg-red-50/70">DEL</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATES -->
+    <section id="stateContainer" class="hidden">
+      <div class="glass overflow-hidden border border-white/60 shadow-lg">
+        <img id="stateImage" src="/images/no-results.webp" class="w-full h-auto block" alt="State">
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section id="apiList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></section>
+
+    <!-- FOOTER -->
+    <footer class="mt-14 pb-8 text-center text-slate-500 text-sm">
+      <p id="footer">© 2024 Aine Api’S — Build For Developer To Developer</p>
+    </footer>
+  </main>
+
+  <!-- MODAL TRY ENDPOINT -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <div class="px-5 py-4 border-b border-white/60 flex items-center justify-between">
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="modalMethod" class="method m-get">GET</span>
+            <div id="modalPath" class="mono text-sm font-semibold text-slate-900 truncate">/</div>
+          </div>
+          <div id="modalName" class="text-sm text-slate-600 mt-1 truncate">—</div>
+        </div>
+
+        <button id="closeModalBtn" class="btn !py-2 !px-3">
+          <img src="/images/icons/close.svg" class="w-5 h-5 opacity-75" alt="">
+          Close
+        </button>
+      </div>
+
+      <div class="modal-body p-5">
+        <div class="glass p-4 border border-white/60">
+          <div class="text-xs font-extrabold text-slate-500 mb-2 flex items-center gap-2">
+            <img src="/images/icons/link.svg" class="w-4 h-4 opacity-70" alt="">
+            REQUEST URL
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="flex-1 min-w-0 bg-white/75 border border-white/70 rounded-2xl px-4 py-3 overflow-x-auto">
+              <code id="modalUrl" class="mono text-[13px] text-slate-800 whitespace-nowrap"></code>
+            </div>
+            <button id="modalCopyUrl" class="btn !py-3 !px-3">
+              <img src="/images/icons/copy.svg" class="w-5 h-5 opacity-80" alt="">
+            </button>
+          </div>
+
+          <div id="paramsContainer" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+          <div class="mt-4 flex flex-col sm:flex-row gap-2">
+            <button id="modalExecute" class="btn btn-primary w-full sm:w-auto justify-center">
+              <img src="/images/icons/play.svg" class="w-5 h-5 opacity-95" alt="">
+              Execute
+            </button>
+
+            <button id="modalClear" class="btn w-full sm:w-auto justify-center">
+              <img src="/images/icons/close.svg" class="w-5 h-5 opacity-75" alt="">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div id="responseWrap" class="mt-5 hidden">
+          <div class="text-xs font-extrabold text-slate-500 mb-2 flex items-center gap-2">
+            <img src="/images/icons/code.svg" class="w-4 h-4 opacity-70" alt="">
+            RESPONSE
+          </div>
+
+          <div class="glass border border-white/60 overflow-hidden">
+            <div class="px-4 py-3 bg-white/55 border-b border-white/60 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span id="respStatus" class="text-xs px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 font-extrabold">200 OK</span>
+                <span id="respTime" class="text-xs text-slate-600 font-semibold">0ms</span>
+              </div>
+              <button id="modalCopyResp" class="btn !py-2 !px-3">
+                <img src="/images/icons/copy.svg" class="w-5 h-5 opacity-80" alt="">
+              </button>
+            </div>
+
+            <div id="respContent" class="p-4"></div>
+          </div>
+        </div>
+
+        <div class="h-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

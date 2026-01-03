@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3l10 18H2L12 3z"/>
+    <path d="M12 9v4"/>
+    <path d="M12 17h.01"/>
+    <!-- blush dots -->
+    <circle cx="8" cy="18.3" r="1" fill="currentColor" stroke="none" opacity=".18"/>
+    <circle cx="16" cy="18.3" r="1" fill="currentColor" stroke="none" opacity=".18"/>
+  </g>
+</svg>

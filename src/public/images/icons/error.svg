@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M15 9l-6 6"/>
+    <path d="M9 9l6 6"/>
+    <!-- tiny tear -->
+    <path d="M18 14c.8 1 .6 2-.2 2.6-.8.6-1.7.3-2.2-.5" opacity=".35"/>
+  </g>
+</svg>
