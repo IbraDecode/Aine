@@ -93,14 +93,10 @@ module.exports = {
   name: "Upscaler",
   desc: "Upscale gambar via URL",
   category: "Tools",
-  path: "/tools/upscale?apikey=&url=",
+  path: "/tools/upscale?url=",
 
   async run(req, res) {
-    const { url, apikey } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({ status: false, error: "Masukkan url image" });

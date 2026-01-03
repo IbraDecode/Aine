@@ -33,13 +33,11 @@ module.exports = {
   name: "Sfile Downloader",
   desc: "Sfile.mobi download URL",
   category: "Downloader",
-  path: "/download/sfile?apikey=&url=",
+  path: "/download/sfile?url=",
   async run(req, res) {
     try {
-      const { apikey, url } = req.query;
+      const { url } = req.query;
       
-      if (!apikey || !global.apikey.includes(apikey))
-        return res.json({ status: false, error: "Apikey invalid" });
 
       if (!url)
         return res.json({ status: false, error: "Url is required" });

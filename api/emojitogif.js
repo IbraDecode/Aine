@@ -6,13 +6,9 @@ module.exports = {
   name: "Emoji To Gif",
   desc: "Convert emoji to gif",
   category: "Tools",
-  path: "/tools/emojitogif?apikey=&emoji=",
+  path: "/tools/emojitogif?emoji=",
   async run(req, res) {
-    const { apikey, emoji } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: 'Apikey invalid' });
-    }
+    const { emoji } = req.query;
 
     if (!emoji) {
       return res.json({ status: false, error: 'Emoji is required' });

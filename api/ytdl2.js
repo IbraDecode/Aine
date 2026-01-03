@@ -58,13 +58,10 @@ module.exports = [
     name: "Ytdl Mp3 V2",
     desc: "Youtube mp3 downloader V2",
     category: "Downloader",
-    path: "/download/ytdl-mp3-v2?apikey=&url=",
+    path: "/download/ytdl-mp3-v2?url=",
     async run(req, res) {
-      const { apikey, url } = req.query;
+      const { url } = req.query;
 
-      if (!global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!url) {
         return res.json({ status: false, error: "Url is required" });
@@ -83,13 +80,10 @@ module.exports = [
     name: "Ytdl Mp4 V2",
     desc: "Youtube mp4 downloader V2",
     category: "Downloader",
-    path: "/download/ytdl-mp4-v2?apikey=&url=",
+    path: "/download/ytdl-mp4-v2?url=",
     async run(req, res) {
-      const { apikey, url } = req.query;
+      const { url } = req.query;
 
-      if (!global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!url) {
         return res.json({ status: false, error: "Url is required" });

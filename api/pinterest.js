@@ -59,13 +59,9 @@ module.exports = {
   name: "Pinterest",
   desc: "Search pinterest image",
   category: "Search",
-  path: "/search/pinterest?apikey=&q=",
+  path: "/search/pinterest?q=",
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { q } = req.query;
 
     if (!q) {
       return res.json({ status: false, error: "Query is required" });

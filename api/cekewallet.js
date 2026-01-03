@@ -61,10 +61,9 @@ module.exports = [
     name: "Cek Ewallet",
     desc: "Cek nama akun Ewallet",
     category: "Orderkuota",
-    path: "/orderkuota/cekewallet?apikey=&provider=&nomor=",
+    path: "/orderkuota/cekewallet?provider=&nomor=",
     async run(req, res) {
-      let { apikey, provider, nomor } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      let { provider, nomor } = req.query;
       if (!provider) return res.json({ status: false, error: 'Missing provider' });
       if (!nomor) return res.json({ status: false, error: 'Missing nomor' });
 

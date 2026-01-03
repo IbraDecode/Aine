@@ -85,10 +85,11 @@ module.exports = {
   name: "React Channel WhatsApp",
   desc: "React emoji to WhatsApp Channel Post",
   category: "Tools",
-  path: "/tools/react-channel?apikey=&postUrl=&emoji=",
+  path: "/tools/react-channel?postUrl=&emoji=",
 
   async run(req, res) {
-    const { apikey, postUrl, emoji } = req.query;
+    const { postUrl, emoji } = req.query;
+    const apikey = req.query.apikey;
 
     if (!apikey || !global.apikey?.includes(apikey)) {
       return res.json({ status: false, error: "Invalid API key" });

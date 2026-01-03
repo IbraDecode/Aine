@@ -48,16 +48,10 @@ module.exports = {
   name: "Pinterest Vid Search",
   desc: "Search video on Pinterest",
   category: "Search",
-  path: "/search/pinterestvid?apikey=&q=",
+  path: "/search/pinterestvid?q=",
 
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    if (!global.apikey.includes(apikey))
-      return res.json({
-        status: false,
-        error: "Apikey invalid"
-      });
+    const { q } = req.query;
 
     if (!q)
       return res.json({

@@ -34,11 +34,9 @@ module.exports = {
   name: "Tiktok Search",
   desc: "Search video tiktok",
   category: "Search",
-  path: "/search/tiktok?apikey=&q=",
+  path: "/search/tiktok?q=",
   async run(req, res) {
-    const { apikey, q } = req.query;
-    if (!global.apikey.includes(apikey))
-      return res.json({ status: false, error: "Apikey invalid" });
+    const { q } = req.query;
     if (!q) return res.json({ status: false, error: "Query is required" });
 
     try {

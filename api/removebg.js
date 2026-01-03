@@ -53,14 +53,10 @@ module.exports = {
   name: "Remove BG",
   desc: "Remove background image",
   category: "Tools",
-  path: "/tools/removebg?apikey=&url=",
+  path: "/tools/removebg?url=",
 
   async run(req, res) {
-    const { url, apikey } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({ status: false, error: "Masukkan url image" });

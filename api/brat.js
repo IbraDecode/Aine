@@ -2,10 +2,9 @@ module.exports = {
   name: "Brat",
   desc: "Brat text generator",
   category: "Imagecreator",
-  path: "/imagecreator/brat?apikey=&text=",
+  path: "/imagecreator/brat?text=",
   async run(req, res) {
-    const { apikey, text } = req.query;
-    if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+    const { text } = req.query;
     if (!text) return res.json({ status: false, error: 'Missing text' });
 
     const buffer = await getBuffer(`https://api.siputzx.my.id/api/m/brat?text=${encodeURIComponent(text)}&isAnimated=false&delay=500`);

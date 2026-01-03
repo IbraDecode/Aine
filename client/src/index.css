@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-aine-text font-sans;
+    background: radial-gradient(circle at 12% 16%, rgba(148, 202, 225, .45), transparent 45%),
+      radial-gradient(circle at 90% 90%, rgba(106, 170, 230, .25), transparent 55%),
+      linear-gradient(180deg, #F7FDFF, #FFFFFF);
+    background-attachment: fixed;
+  }
+
+  .dark body,
+  body.dark {
+    @apply text-aine-text-dark;
+    background: radial-gradient(circle at 12% 16%, rgba(22, 100, 185, .3), transparent 45%),
+      radial-gradient(circle at 90% 90%, rgba(105, 170, 230, .15), transparent 55%),
+      linear-gradient(180deg, #0F172A, #1E293B);
+  }
+
+  body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background-image: radial-gradient(rgba(255, 255, 255, .9) 1px, transparent 1px);
+    background-size: 14px 14px;
+    z-index: -1;
+  }
+
+  .dark body:before,
+  body.dark:before {
+    opacity: .08;
+    background-image: radial-gradient(rgba(148, 202, 225, .5) 1px, transparent 1px);
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-aine-surface border border-aine-stroke shadow-aine backdrop-blur-md rounded-aine;
+  }
+
+  .dark .glass {
+    @apply bg-aine-surface-dark border-aine-stroke-dark;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2.5 px-3.5 py-3 rounded-2xl font-bold text-sm border border-aine-stroke bg-white/75 shadow-aine-sm hover:-translate-y-px transition-all;
+  }
+
+  .dark .btn {
+    @apply bg-slate-800/80 border-slate-700 text-slate-200;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-br from-aine-primary to-aine-deep text-white border-white/25 shadow-aine-blue;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-aine-stroke bg-white/[.65] text-xs font-extrabold text-aine-deep;
+  }
+
+  .dark .pill {
+    @apply bg-slate-800/70 border-slate-700 text-aine-primary;
+  }
+
+  .input {
+    @apply w-full py-3.5 px-4 rounded-[18px] border border-aine-highlight/[.55] bg-white/[.78] shadow-aine-sm outline-none text-sm focus:border-aine-primary/90 focus:ring-[5px] focus:ring-aine-primary/[.18] transition-all;
+  }
+
+  .dark .input {
+    @apply bg-slate-800/80 border-slate-600 text-slate-200 placeholder:text-slate-500;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-aine transition-all;
+  }
+}

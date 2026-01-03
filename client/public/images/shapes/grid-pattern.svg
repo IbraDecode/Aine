@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <path d="M0 0H200V200H0Z" fill="transparent"/>
+  <g stroke="currentColor" opacity=".18" stroke-width="1">
+    <path d="M0 50H200"/>
+    <path d="M0 100H200"/>
+    <path d="M0 150H200"/>
+    <path d="M50 0V200"/>
+    <path d="M100 0V200"/>
+    <path d="M150 0V200"/>
+  </g>
+</svg>

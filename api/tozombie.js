@@ -103,14 +103,10 @@ module.exports = [
   name: "To Zombie",
   desc: "Convert image to realistic zombie",
   category: "Tools",
-  path: "/tools/tozombie?apikey=&url=",
+  path: "/tools/tozombie?url=",
 
   async run(req, res) {
-    const { url, apikey } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({ status: false, error: "Masukkan url image" });

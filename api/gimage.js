@@ -56,13 +56,9 @@ module.exports = {
   name: "Gimage",
   desc: "Search google image",
   category: "Search",
-  path: "/search/gimage?apikey=&q=",
+  path: "/search/gimage?q=",
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { q } = req.query;
 
     if (!q) {
       return res.json({ status: false, error: "Query is required" });

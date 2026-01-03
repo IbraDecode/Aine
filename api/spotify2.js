@@ -28,14 +28,10 @@ module.exports = {
   name: "Spotify2",
   desc: "Download Mp3 Spotify V2",
   category: "Downloader",
-  path: "/download/spotify2?apikey=&url=",
+  path: "/download/spotify2?url=",
 
   async run(req, res) {
-    const { apikey, url } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({ status: false, error: "URL Spotify wajib diisi" });

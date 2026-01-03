@@ -2,12 +2,9 @@ module.exports = {
   name: "NSFW",
   desc: "Random nsfw anime 18+",
   category: "Random",
-  path: "/random/nsfw?apikey=",
+  path: "/random/nsfw?",
   async run(req, res) {
-    const { apikey } = req.query;
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: 'Apikey invalid' });
-    }
+    const {} = req.query;
 
     try {
       const types = ["blowjob", "neko", "trap", "waifu"];

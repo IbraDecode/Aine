@@ -2,14 +2,11 @@ module.exports = {
   name: "Bratvid", 
   desc: "Brat video generator", 
   category: "Imagecreator", 
-  path: "/imagecreator/bratvid?apikey=&text=",
+  path: "/imagecreator/bratvid?text=",
 
   async run(req, res) {
     try {
-      const { apikey, text } = req.query;
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: 'Apikey invalid' });
-      }
+      const { text } = req.query;
 
       if (!text) {
         return res.json({ status: false, error: 'Text parameter is required' });

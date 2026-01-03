@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="playGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#69AAE6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1664B9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g>
+    <!-- Outer circle with gradient -->
+    <circle cx="12" cy="12" r="10" fill="url(#playGradient)" opacity="0.1"/>
+    <circle cx="12" cy="12" r="10" stroke="url(#playGradient)" stroke-width="2" fill="none"/>
+    
+    <!-- Play triangle -->
+    <path d="M10 8l8 4-8 4V8z" fill="url(#playGradient)" stroke="none"/>
+    
+    <!-- Sparkle effects -->
+    <g opacity="0.6">
+      <circle cx="7" cy="7" r="1" fill="#69AAE6"/>
+      <circle cx="17" cy="7" r="0.5" fill="#1664B9"/>
+      <circle cx="19" cy="17" r="0.8" fill="#69AAE6"/>
+    </g>
+  </g>
+</svg>

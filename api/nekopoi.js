@@ -53,13 +53,9 @@ module.exports = {
   name: "Nekopoi",
   desc: "Search videos from Nekopoi.care",
   category: "Search",
-  path: "/search/nekopoi?apikey=&q=",
+  path: "/search/nekopoi?q=",
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { q } = req.query;
 
     if (!q) {
       return res.json({ status: false, error: "Query is required" });

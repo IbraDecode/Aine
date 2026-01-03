@@ -53,12 +53,13 @@ module.exports = {
     name: "Chat GPT2",
     desc: "AI Chat GPT with Image support",
     category: "Openai",
-    path: "/ai/gpt-v2?apikey=&question=&imageUrl=",
+    path: "/ai/gpt-v2?question=&imageUrl=",
 
     async run(req, res) {
-        const { question, apikey, imageUrl } = req.query;
+        const { question, imageUrl } = req.query;
 
         if (!question) return res.json({ status: false, error: "Question is required" });
+        const apikey = req.query.apikey;
         if (!apikey || !global.apikey?.includes(apikey)) {
             return res.json({ status: false, error: "Invalid API key" });
         }

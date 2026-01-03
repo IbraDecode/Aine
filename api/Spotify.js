@@ -93,13 +93,10 @@ module.exports = [
     name: "Spotify",
     desc: "Spotify MP3 Downloader",
     category: "Downloader",
-    path: "/download/spotify?apikey=&url=",
+    path: "/download/spotify?url=",
     async run(req, res) {
-      const { url, apikey } = req.query;
+      const { url } = req.query;
 
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!url) {
         return res.json({ status: false, error: "Url is required" });
@@ -123,13 +120,10 @@ module.exports = [
     name: "Spotify Search",
     desc: "Search tracks from Spotify (Official API)",
     category: "Search",
-    path: "/search/spotify?apikey=&q=",
+    path: "/search/spotify?q=",
     async run(req, res) {
-      const { apikey, q } = req.query;
+      const { q } = req.query;
 
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!q) {
         return res.json({ status: false, error: "Query is required" });

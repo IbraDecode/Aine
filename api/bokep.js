@@ -65,10 +65,9 @@ module.exports = {
   name:"Bokep Search",
   desc:"Search video from Bokepsin",
   category:"Search",
-  path:"/search/bokep?apikey=&q=",
+  path:"/search/bokep?q=",
   async run(req,res){
-    const { apikey, q } = req.query;
-    if(!global.apikey.includes(apikey)) return res.json({status:false,error:"Apikey invalid"});
+    const { q } = req.query;
     if(!q) return res.json({status:false,error:"Query is required"});
     try{
       const data = await bokepsinSearch(q);

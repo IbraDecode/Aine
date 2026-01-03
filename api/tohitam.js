@@ -108,17 +108,10 @@ module.exports = [
   name: "To Hitam",
   desc: "Convert image to kulit hitam",
   category: "Tools",
-  path: "/tools/tohitam?apikey=&url=",
+  path: "/tools/tohitam?url=",
 
   async run(req, res) {
-    const { url, apikey } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({
-        status: false,
-        error: "Apikey invalid"
-      });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({

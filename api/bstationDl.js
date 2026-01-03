@@ -104,17 +104,10 @@ module.exports = {
   name: "Bstation",
   desc: "Bilibili / Bstation video downloader",
   category: "Downloader",
-  path: "/download/bstation?apikey=&url=",
+  path: "/download/bstation?url=",
 
   async run(req, res) {
-    const { apikey, url } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({
-        status: false,
-        error: "Apikey invalid"
-      });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({

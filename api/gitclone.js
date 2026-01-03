@@ -30,12 +30,10 @@ module.exports = [
     name: "Gitclone",
     desc: "Clone github repositori",
     category: "Downloader",
-    path: "/download/github?apikey=&url=",
+    path: "/download/github?url=",
     async run(req, res) {
-      const { apikey, url } = req.query;
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
+      const { url } = req.query;
+      
       if (!url) {
         return res.json({ status: false, error: "Url is required" });
       }

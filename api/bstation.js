@@ -51,13 +51,11 @@ module.exports = {
   name: "Bstation Search",
   desc: "Search video on BiliBili/BStation",
   category: "Search",
-  path: "/search/bstation?apikey=&q=",
+  path: "/search/bstation?q=",
 
   async run(req, res) {
-    const { apikey, q } = req.query;
+    const { q } = req.query;
 
-    if (!global.apikey.includes(apikey))
-      return res.json({ status: false, error: "Apikey invalid" });
 
     if (!q) return res.json({ status: false, error: "Query is required" });
 

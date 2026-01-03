@@ -50,12 +50,13 @@ module.exports = {
 name: "Chat GPT",
 desc: "AI Chat GPT models",
 category: "Openai",
-path: "/ai/gpt?apikey=&question=",
+path: "/ai/gpt?question=",
 
 async run(req, res) {  
-    const { question, apikey } = req.query;  
+    const { question } = req.query;  
 
     if (!question) return res.json({ status: false, error: "Question is required" });  
+    const apikey = req.query.apikey;
     if (!apikey || !global.apikey?.includes(apikey)) {  
         return res.json({ status: false, error: "Invalid API key" });  
     }  

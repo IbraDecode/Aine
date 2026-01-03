@@ -73,13 +73,9 @@ module.exports = {
   name: "Instagram",
   desc: "Instagram downloader",
   category: "Downloader",
-  path: "/download/instagram?apikey=&url=",
+  path: "/download/instagram?url=",
   async run(req, res) {
-    const { apikey, url } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({ status: false, error: "Url is required" });

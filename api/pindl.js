@@ -83,17 +83,10 @@ module.exports = {
   name: "Pinterest",
   desc: "Pinterest video downloader",
   category: "Downloader",
-  path: "/download/pinterest?apikey=&url=",
+  path: "/download/pinterest?url=",
 
   async run(req, res) {
-    const { apikey, url } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({
-        status: false,
-        error: "Apikey invalid"
-      });
-    }
+    const { url } = req.query;
 
     if (!url) {
       return res.json({

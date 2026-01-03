@@ -5,13 +5,9 @@ module.exports = {
   name: "Image Generator",
   desc: "Generate AI Image from prompt",
   category: "Openai",
-  path: "/ai/image-generator?apikey=&prompt=",
+  path: "/ai/image-generator?prompt=",
   async run(req, res) {
-    const { apikey, prompt } = req.query;
-
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { prompt } = req.query;
 
     if (!prompt) {
       return res.json({ status: false, error: "Prompt tidak boleh kosong" });

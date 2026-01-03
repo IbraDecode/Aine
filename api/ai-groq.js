@@ -98,13 +98,13 @@ module.exports = {
     name: "Groq AI",
     desc: "Groq Chat AI models",
     category: "Openai",
-    path: "/ai/groq?apikey=&question=",
+    path: "/ai/groq?question=",
 
     async run(req, res) {
-        const { question, apikey } = req.query;
+        const { question } = req.query;
 
         if (!question) return res.json({ status: false, error: "Question is required" });
-
+        const apikey = req.query.apikey;
         if (!apikey || !global.apikey?.includes(apikey)) {
             return res.json({ status: false, error: "Invalid API key" });
         }

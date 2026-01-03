@@ -211,10 +211,9 @@ module.exports = [
     name: "Get OTP (tahap 1)",
     desc: "Get OTP Orderkuota",
     category: "Orderkuota",
-    path: "/orderkuota/getotp?apikey=&username=&password=",
+    path: "/orderkuota/getotp?username=&password=",
     async run(req, res) {
-      const { apikey, username, password } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, password } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!password) return res.json({ status: false, error: 'Missing password' });
       try {
@@ -230,10 +229,9 @@ module.exports = [
     name: "Get Token (tahap 2)",
     desc: "Get Token Orderkuota",
     category: "Orderkuota",
-    path: "/orderkuota/gettoken?apikey=&username=&otp=",
+    path: "/orderkuota/gettoken?username=&otp=",
     async run(req, res) {
-      const { apikey, username, otp } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, otp } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!otp) return res.json({ status: false, error: 'Missing otp' });
       try {
@@ -249,10 +247,9 @@ module.exports = [
     name: "Cek Mutasi QRIS",
     desc: "Cek Mutasi Qris Orderkuota",
     category: "Orderkuota",
-    path: "/orderkuota/mutasiqr?apikey=&username=&token=",
+    path: "/orderkuota/mutasiqr?username=&token=",
     async run(req, res) {
-      const { apikey, username, token } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, token } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!token) return res.json({ status: false, error: 'Missing token' });
       try {
@@ -269,10 +266,9 @@ module.exports = [
     name: "Cek Profile",
     desc: "Cek Profile Orderkuota",
     category: "Orderkuota",
-    path: "/orderkuota/profile?apikey=&username=&token=",
+    path: "/orderkuota/profile?username=&token=",
     async run(req, res) {
-      const { apikey, username, token } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, token } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!token) return res.json({ status: false, error: 'Missing token' });
       try {
@@ -288,10 +284,9 @@ module.exports = [
     name: "Create QRIS",
     desc: "Generate QR Code Payment",
     category: "Orderkuota",
-    path: "/orderkuota/createpayment?apikey=&username=&token=&amount=",
+    path: "/orderkuota/createpayment?username=&token=&amount=",
     async run(req, res) {
-      const { apikey, username, token, amount } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, token, amount } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!token) return res.json({ status: false, error: 'Missing token' });
       if (!amount) return res.json({ status: false, error: 'Missing amount' });
@@ -319,10 +314,9 @@ module.exports = [
     name: "Withdraw QRIS",
     desc: "Tarik saldo QRIS Orderkuota",
     category: "Orderkuota",
-    path: "/orderkuota/wdqr?apikey=&username=&token=&amount=",
+    path: "/orderkuota/wdqr?username=&token=&amount=",
     async run(req, res) {
-      const { apikey, username, token, amount } = req.query;
-      if (!global.apikey.includes(apikey)) return res.json({ status: false, error: 'Apikey invalid' });
+      const { username, token, amount } = req.query;
       if (!username) return res.json({ status: false, error: 'Missing username' });
       if (!token) return res.json({ status: false, error: 'Missing token' });
       if (!amount) return res.json({ status: false, error: 'Missing amount' });

@@ -104,13 +104,10 @@ module.exports = {
   name: "Otakudesu",
   desc: "Search anime with full details from Otakudesu",
   category: "Search",
-  path: "/search/otakudesu?apikey=&q=",
+  path: "/search/otakudesu?q=",
   async run(req, res) {
-    const { apikey, q, limit } = req.query;
+    const { q, limit } = req.query;
 
-    if (!apikey) return res.json({ status: false, error: "Apikey required" });
-    if (!global.apikey.includes(apikey))
-      return res.json({ status: false, error: "Apikey invalid" });
     if (!q) return res.json({ status: false, error: "Query is required" });
 
     try {

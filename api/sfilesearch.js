@@ -42,14 +42,9 @@ module.exports = {
   name: "Sfile Search",
   desc: "Search files from Sfile.mobi",
   category: "Search",
-  path: "/search/sfile?apikey=&q=",
+  path: "/search/sfile?q=",
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    // Apikey invalid
-    if (!global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: "Apikey invalid" });
-    }
+    const { q } = req.query;
 
     // Query kosong
     if (!q) {

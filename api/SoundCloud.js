@@ -36,13 +36,9 @@ module.exports = [
     name: "SoundCloud",
     desc: "SoundCloud MP3 Downloader",
     category: "Downloader",
-    path: "/download/soundcloud?apikey=&url=",
+    path: "/download/soundcloud?url=",
     async run(req, res) {
-      const { url, apikey } = req.query;
-
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
+      const { url } = req.query;
 
       if (!url) {
         return res.json({ status: false, error: "Url is required" });

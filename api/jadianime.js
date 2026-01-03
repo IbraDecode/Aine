@@ -78,14 +78,11 @@ module.exports = [
     name: "Jadi Anime",
     desc: "Convert to Anime Style",
     category: "Tools",
-    path: "/tools/jadianime?apikey=&url=",
+    path: "/tools/jadianime?url=",
 
     async run(req, res) {
-      const { url, apikey } = req.query;
+      const { url } = req.query;
 
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!url) {
         return res.json({ status: false, error: "Masukkan url image" });
@@ -110,14 +107,11 @@ module.exports = [
     name: "To Ghibli",
     desc: "Convert to Ghibli Style",
     category: "Tools",
-    path: "/tools/toghibli?apikey=&url=",
+    path: "/tools/toghibli?url=",
 
     async run(req, res) {
-      const { url, apikey } = req.query;
+      const { url } = req.query;
 
-      if (!apikey || !global.apikey.includes(apikey)) {
-        return res.json({ status: false, error: "Apikey invalid" });
-      }
 
       if (!url) {
         return res.json({ status: false, error: "Masukkan url image" });

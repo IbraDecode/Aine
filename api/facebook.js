@@ -71,11 +71,9 @@ module.exports = {
     name: "Facebook",
     desc: "Facebook downloader",
     category: "Downloader",
-    path: "/download/facebook?apikey=&url=",
+    path: "/download/facebook?url=",
     async run(req, res) {
-      const { apikey, url } = req.query;
-      if (!apikey || !global.apikey.includes(apikey))
-        return res.json({ status: false, error: "Apikey invalid" });
+      const { url } = req.query;
       if (!url)
         return res.json({ status: false, error: "Url is required" });
 

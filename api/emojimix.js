@@ -4,13 +4,9 @@ module.exports = {
   name: "Emoji Mix",
   desc: "Mixed emoji generator",
   category: "Tools",
-  path: "/tools/emojimix?apikey=&emoji1=&emoji2=",
+  path: "/tools/emojimix?emoji1=&emoji2=",
   async run(req, res) {
-    const { apikey, emoji1, emoji2 } = req.query;
-    
-    if (!apikey || !global.apikey.includes(apikey)) {
-      return res.json({ status: false, error: 'Apikey invalid' });
-    }
+    const { emoji1, emoji2 } = req.query;
 
     if (!emoji1 || !emoji2) {
       return res.json({ status: false, error: 'Emoji1 dan Emoji2 wajib diisi' });

@@ -100,11 +100,9 @@ module.exports = [
     name: "XNXX",
     desc: "Download video xnxx 18+ via Dirpy",
     category: "Downloader",
-    path: "/download/xnxx?apikey=&url=",
+    path: "/download/xnxx?url=",
     async run(req, res) {
-      const { apikey, url } = req.query;
-      if (!apikey || !global.apikey.includes(apikey))
-        return res.json({ status: false, error: "Apikey invalid" });
+      const { url } = req.query;
       if (!url) return res.json({ status: false, error: "Url is required" });
 
       try {
@@ -119,11 +117,9 @@ module.exports = [
     name: "XNXX Search",
     desc: "Search video xnxx 18+",
     category: "Search",
-    path: "/search/xnxx?apikey=&query=",
+    path: "/search/xnxx?query=",
     async run(req, res) {
-      const { apikey, query } = req.query;
-      if (!apikey || !global.apikey.includes(apikey))
-        return res.json({ status: false, error: "Apikey invalid" });
+      const { query } = req.query;
       if (!query) return res.json({ status: false, error: "Query is required" });
 
       try {

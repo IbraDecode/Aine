@@ -72,17 +72,10 @@ module.exports = {
   name: "HappyMod",
   desc: "Search app/game from HappyMod",
   category: "Search",
-  path: "/search/happymod?apikey=&q=",
+  path: "/search/happymod?q=",
 
   async run(req, res) {
-    const { apikey, q } = req.query;
-
-    if (!global.apikey.includes(apikey)) {
-      return res.json({
-        status: false,
-        error: "Apikey invalid"
-      });
-    }
+    const { q } = req.query;
 
     if (!q) {
       return res.json({
