@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 4h12a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4z"/>
-    <path d="M8 7h8"/>
-    <path d="M8 11h6"/>
-    <!-- bookmark -->
-    <path d="M17 4v6l-2-1-2 1V4"/>
-  </g>
-</svg>
