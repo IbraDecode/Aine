@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node --no-deprecation index.js"
   },
-  "author": "Skyzo",
+  "author": "Ibra Decode",
   "license": "MIT",
   "dependencies": {
     "async-g-i-s": "^1.5.5",
