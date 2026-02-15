@@ -61,7 +61,7 @@ module.exports = [
   {
     name: "Image Edit",
     desc: "Edit gambar dengan AI (enhance, style, sketch, dll)",
-    category: "Open AI",
+    category: "Openai",
     path: "/ai/image-edit?url=&prompt=",
     innerDesc: "Parameter: url (link gambar) atau upload file, prompt (instruksi edit)",
     async run(req, res) {
