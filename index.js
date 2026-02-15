@@ -13,6 +13,7 @@ const limiter = rateLimit({
   message: { status: false, error: 'Terlalu banyak permintaan, coba lagi nanti.' },
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { trustProxy: false },
 });
 
 const app = express();
